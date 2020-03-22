@@ -1,0 +1,17 @@
+.alert_1 {
+    padding: 4px 8px;
+    color: black;
+    background: rgb(130, 236, 130);
+    border: 2px solid rgb(9, 208, 9);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.alert_2 {
+    padding: 4px 8px;
+    color: black;
+    background: rgb(247, 131, 218);
+    border: 2px solid rgb(241, 52, 163);
+    box-sizing: border-box;
+    width: 100%;
+}

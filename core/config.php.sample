@@ -1,0 +1,25 @@
+<?php
+// データベース接続情報
+const DB_HOST = "xxxxxxxxx";
+const DB_NAME = "xxxxxxxxx";
+const DB_USER = "xxxxxxxxx";
+const DB_PASS = "xxxxxxxxx";
+
+// Google Cloud API : ACCESS key
+const GOOGLE_API_KEY = "xxxxxxxxx";
+
+// Google Custom EngineId (標準検索)
+const CUSTOM_ENGINID = "xxxxxxxxx";
+
+// Google Custom EngineId (Qiita検索用)
+const CUSTOM_ENGINID_QIITA = "xxxxxxxxx";
+
+// Google Custom EngineId (Teratail検索用)
+const GOOGLE_ENGINEID_TERATAIL = "xxxxxxxxx";
+
+// Google Custom EngineId (stackoverflow 日本版 検索用)
+const GOOGLE_ENGINEID_JA_SOF = "xxxxxxxxx";
+
+// Google Custom EngineId (stackoverflow 英語 検索用)
+const GOOGLE_ENGINEID_EN_SOF = "xxxxxxxxx";
+?>

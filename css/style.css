@@ -1,0 +1,895 @@
+/* 初期化 */
+* {
+    padding:0px;
+    margin:0px;
+}
+
+#pace_run {
+    /*position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    z-index: 130;*/
+}
+
+body {
+    position: relative;
+    min-height:45vw;
+    width:100%;
+    background-attachment: fixed;
+    font-family:  'Lato', 'Noto Sans JP', '游ゴシック Medium',
+    '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN',
+    'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック',
+    'MS PGothic', sans-serif;
+    padding-bottom: 45px;
+}
+
+h1 {
+    padding:20px 10px;
+    margin:10px;
+    color:black;
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 5px 5px 1px #c4c2c2;
+    position: relative;
+    z-index: 1;
+}
+
+h1::before {
+    width:60px;
+    height:60px;
+    color: rgb(46, 114, 240);
+    background: rgb(64, 128, 247);
+    border:4px solid rgb(238, 238, 87);
+    border-radius: 50%;
+    position: absolute;
+    content: "";
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+h2 {
+    text-align: center;
+    padding:20px;
+    font-size: 25px;
+    position: relative;
+}
+
+h2::before {
+    content: "";
+    width: 80px;
+    height: 10px;
+    background:rgb(67, 67, 241);
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+    border-left: 6px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+p {
+    margin: 8px 0px;
+}
+
+.container {
+    width:100%;
+    max-width:1200px;
+    margin:0px auto;
+}
+
+.mask {
+    background:rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/************************/
+/*   ヘッダーエリア      */
+/************************/
+header {
+    width:100%;
+    height:auto;
+    position: absolute;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.85);
+    position: fixed;
+    z-index: 100;
+}
+
+header h1 {
+    float:left;
+}
+
+.header_menu {
+    float: right;
+    padding:20px 10px;
+}
+
+.logout {
+    padding: 5px 10px;
+    background: linear-gradient(0deg, black, rgb(95, 94, 94));
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.float_clear {
+    clear:both;
+    display: block;
+    width:1px;
+    height:1px;
+}
+
+.gray_scale {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 120;
+    display: none;
+}
+
+.mobile_menu {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    text-align: center;
+    font-size: 28px;
+    display: none;
+    z-index: 115;
+}
+
+.mobile_menu button {
+    font-size: 30px;
+    padding: 10px;
+    border: none;
+    background: white;
+    cursor: pointer;
+}
+
+.mobile_menu font {
+    display: block;
+}
+
+.mobile_menu_modal {
+    display: none;
+    position: absolute;
+    top: 5px;
+    margin: 0px 8px;
+    padding: 8px;
+    background: white;
+    width: 96vw;
+    box-sizing: border-box;
+    z-index: 116;
+}
+
+.mobile_menu_modal p {
+    box-sizing: border-box;
+}
+
+.mobile_menu_modal button {
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+    padding: 4px 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.mypage_link {
+    padding: 5px 10px;
+    background: linear-gradient(0deg, rgb(25, 0, 255), rgb(0, 110, 255));
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    margin-right: 4px;
+}
+
+/*  ログインモーダル  */
+.login_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#login_modal_show,
+#login_modal_show_mobile {
+    padding: 5px 10px;
+    background: linear-gradient(0deg, black, rgb(95, 94, 94));
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    display: block;
+    margin: 0px auto;
+    width: 100%;
+    padding: 8px 15px;
+    font-size: 18px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.btn-submit, .close {
+    display: inline-block;
+    padding: 15px 25px;
+    color: white;
+    background: linear-gradient(0deg, black, rgb(95, 94, 94));
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/*  メール送信用モーダル  */
+.send_mail_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 105;
+}
+
+/*   ストックモーダル   */
+.add_stock_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -53%);
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 105;
+}
+
+.add_stock_modal label {
+    background: rgb(189, 191, 192);
+    font-weight: bold;
+    font-size: 17px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px 8px;
+    margin-top: 4px;
+    text-align: center;
+    display: block;
+}
+
+.add_stock_modal input,
+.add_stock_modal textarea,
+.add_stock_modal select {
+    font-size: 17px;
+    padding: 3px;
+    border: 2px solid rgb(185, 182, 182);
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 1s;
+}
+
+.add_stock_modal input:focus,
+.add_stock_modal textarea:focus {
+    border: 2px solid rgb(103, 103, 247);
+}
+
+.add_stock_modal input:read-only,
+.add_stock_modal textarea:read-only {
+    background-color: #ccc;
+}
+
+.stock_details_btn {
+    padding: 5px 15px;
+    margin: 0px auto;
+    font-size: 1em;
+    color: white;
+    background: rgb(4, 170, 26);
+    border: 2px solid rgb(3, 124, 68);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 1s;
+}
+
+.stock_details_btn:hover {
+    color: green;
+    background: white;
+}
+
+.stock_delete_btn {
+    padding: 5px 15px;
+    margin: 0px auto;
+    font-size: 1em;
+    color: white;
+    background: rgb(248, 6, 38);
+    border: 2px solid rgb(214, 4, 49);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 1s;
+}
+
+.stock_delete_btn:hover {
+    color: red;
+    background: white;
+}
+
+/************************/
+/*     サーチエリア      */
+/************************/
+.seach_wrapper {
+    width: 100%;
+    height: 330px !important;
+    /*background-image: url('../img/slide6.jpg');*/
+    background-size: cover;
+    background-position: center;
+    color: white;
+    clear: both;
+}
+
+.seach_erea_line_top {
+    width:100%;
+    height:25px;
+    margin-top: 100px;
+    background:linear-gradient(0deg, rgb(58, 188, 231), rgb(56, 35, 243));
+    clear: both;
+}
+
+.seach_erea_line_bottom {
+    width:100%;
+    height:25px;
+    background:linear-gradient(0deg, rgb(56, 35, 243), rgb(58, 188, 231));
+}
+
+.translate_select {
+    margin: 15px 15px 0px 15px;
+}
+
+.seach_box {
+    width: 70%;
+    height: 30px;
+    padding: 8px 15px;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    background:lightgray;
+    transition: all 1s;
+}
+
+.seach_box:focus {
+    border:2px solid rgb(0, 81, 255);
+    background: white;
+}
+
+.seach_submit {
+    width: 13%;
+    height: 48px;
+    padding: 8px 15px;
+    color: white;
+    background:rgb(0, 81, 255);
+    font-size: 22px;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    border:1px solid gray;
+    transition: all 1s;
+}
+
+.seach_submit:hover {
+    opacity: .75;
+}
+
+/************************/
+/*      コンテンツ       */
+/************************/
+/*  Google Custom Engin   */
+.google_custom {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+}
+
+.google_custom h2 {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+}
+
+.google_custom_item {
+    flex-basis: 50%;
+    flex-shrink: 2;
+    padding: 10px 10px 48px 10px;
+    box-sizing: border-box;
+    border: 8px solid rgb(77, 77, 238);
+    background:linear-gradient(0deg, lightgray, lightblue);
+    position: relative;
+}
+
+.google_custom_item a {
+    font-size: 18px;
+}
+
+.google_custom_item span {
+    padding: 5px;
+    border: 1px solid gray;
+    background: lightblue;
+}
+
+.number {
+    display: inline;
+}
+
+.webpage_title {
+    display: inline;
+}
+
+/* YouTube Seach Engine  */
+.youtube_search {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+}
+
+.youtube_search h2::before {
+    background: rgb(252, 37, 37);
+}
+
+.youtube_search h2 {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+}
+
+.youtube_search_item {
+    flex-basis: 50%;
+    flex-shrink: 2;
+    box-sizing: border-box;
+    border: 8px solid rgb(238, 77, 85);
+    background:linear-gradient(0deg, rgb(247, 181, 181), lightgray);
+    position: relative;
+    padding-bottom: 48px;
+}
+
+.youtube_search_item a {
+    font-size: 18px;
+}
+
+.youtube_search_item span {
+    padding: 8px;
+    /*border: 1px solid rgb(196, 194, 194);*/
+    border: 1px solid rgb(247, 181, 181);
+    background: lightblue;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.movie-wrap {
+    position: relative;
+    padding-bottom: 56.25%; /*アスペクト比 16:9の場合の縦幅*/
+    height: 0;
+    overflow: hidden;
+}
+
+.movie-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/*
+.youtube_search_item iframe {
+    width: 100%;
+    height: 329px;
+}
+*/
+.movie_title {
+    /*padding: 10px;*/
+}
+
+.youtube_title_link {
+    padding: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.youtube_title_link:hover {
+    text-decoration: underline;
+}
+
+.movie_title_translate {
+    margin:0px 10px;
+    margin-bottom:10px;
+}
+
+.contents_operation_area {
+    display: block;
+    width:100%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 10px;
+}
+
+.contents_operation_area button,
+.contents_operation_area a {
+    display: inline-block;
+    margin:0px auto;
+    text-align: center;
+}
+
+.translate_btn {
+    padding: 5px 15px;
+    margin:0px auto;
+    font-size: 1em;
+    color: white;
+    background: rgb(39, 97, 255);
+    border: 2px solid rgb(39, 97, 255);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.send_mail_btn_web,
+.send_mail_btn_movie {
+    padding: 9px 15px;
+    margin:0px auto;
+    font-size: 1em;
+    color: white;
+    background: rgb(39, 97, 255);
+    border: 2px solid rgb(39, 97, 255);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.translate_btn:hover,
+.send_mail_btn_web:hover,
+.send_mail_btn_movie:hover {
+    color: blue;
+    background: white;
+}
+
+.stock_text_btn,
+.stock_movie_btn {
+    padding: 5px 15px;
+    margin:0px auto;
+    font-size: 1em;
+    color: white;
+    background: rgb(255, 154, 1);
+    border: 2px solid rgb(255, 154, 1);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.stock_text_btn:hover,
+.stock_movie_btn:hover {
+    color: orange;
+    background: white;
+}
+
+/*  マイページ  */
+.mymenu {
+    width: max-content;
+    margin: 10px auto;
+    box-sizing: border-box;
+    display: block;
+}
+
+.mymenu li {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 18px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.mymenu a {
+    text-decoration: none;
+}
+
+.user_data_item {
+    display: inline-block;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    width: 33%;
+    margin: 0px 0px 6px 0px;
+}
+
+.user_data_item label {
+    display: block;
+    background: rgb(59, 159, 241);
+    padding: 3px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user_data_item span {
+    display: block;
+    background: rgb(222, 221, 224);
+    padding: 3px 10px;
+    text-align: center;
+    margin: 5px auto;
+    width: 86%;
+    box-sizing: content-box;
+}
+
+.update_item {
+    display: inline-block;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    width: 33%;
+    margin: 0px 0px 6px 0px;
+}
+
+.update_item label {
+    display: block;
+    background: rgb(187, 172, 240);
+    padding: 3px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.update_item input {
+    display: block;
+    background: rgb(222, 221, 224);
+    padding: 3px 10px;
+    text-align: center;
+    margin: 5px auto;
+    width: 86%;
+    box-sizing: content-box;
+}
+
+.update_btn {
+    display: block;
+    padding: 5px 15px;
+    font-size: 20px;
+    margin: 6px auto;
+    background: rgb(146, 41, 245);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 1s;
+}
+
+.update_btn:hover {
+    opacity: .7;
+}
+
+/*   ニュース一覧   */
+.it_topik_news {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 8px;
+    margin: 10px 0px;
+}
+
+.it_topik_news_item {
+    position: relative;
+    flex-basis: 31.5%;
+    flex-shrink: 2;
+    padding: 8px;
+    cursor: default;
+    background: rgb(169, 218, 247);
+    bottom: 0px;
+    right: 0px;
+    transition: all 1s;
+    box-sizing: border-box;
+}
+
+.it_topik_news_item:hover {
+    background: rgb(193, 195, 196);
+    box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.4);
+    bottom: 8px;
+    right: 8px;
+}
+
+.it_topik_news_item img {
+    width: 100%;
+    height: auto;
+}
+
+.it_topik_news_item a {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.it_topik_news_item a:hover {
+    text-decoration: underline;
+}
+
+/*   ストックの編集ページ   */
+.stock_update_form {
+    margin: 25px 3px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.stock_update_form label {
+    flex-basis: 25%;
+    flex-shrink: 2;
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-left: 3px solid rgb(252, 180, 46);
+    background:linear-gradient(90deg, rgb(175, 174, 174), rgb(143, 219, 245));
+    text-align: center;
+    line-height: 100%;
+}
+
+.update_stock_input_data {
+    flex-basis: 75%;
+    flex-shrink: 2;
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    background:rgb(208, 240, 251);
+}
+
+.update_stock_input_data input[type="date"],
+.update_stock_input_data select {
+    font-size: 17px;
+    padding: 3px 5pa;
+}
+
+.update_stock_input_data textarea {
+    font-size: 17px;
+    padding: 3px 5pa;
+    width: 100%;
+    height: 300px;
+}
+
+.update_stock_input_data input[type="text"] {
+    font-size: 17px;
+    padding: 3px 5pa;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.update_stock_submit {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.update_stock_back {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/************************/
+/*       フッター        */
+/************************/
+footer {
+    background: rgb(0, 110, 255);
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+/*   コピーライト表示  */
+.copyright {
+    text-align: center;
+    padding: 5px;
+    color: white;
+}
+
+/************************/
+/*   レスポンシブ処理    */
+/************************/
+@media screen and (max-width: 700px) {
+    header h1 {
+        float: unset;
+        margin: 0px auto;
+    }
+
+    header h1::before {
+        display: none;
+    }
+
+    .header_menu {
+        display: none;
+    }
+
+    .mask {
+        padding: 40px 0px;
+    }
+
+    .google_custom_item,
+    .youtube_search_item,
+    .it_topik_news_item {
+        flex-basis: 100%;
+    }
+
+    .google_custom_item,
+    .youtube_search_item {
+        padding-bottom: 10px !important;
+    }
+
+    .seach_wrapper {
+        height: 500px !important;
+    }
+
+    .seach_box {
+        width: 84%;
+    }
+
+    .seach_submit {
+        display: block !important;
+        width: 30%;
+    }
+
+    ..translate_select {
+        margin: 30px 15px 0px 15px;
+    }
+
+    .mobile_menu {
+        display: block;
+    }
+
+    .user_data_item,
+    .update_item {
+        width: 100%;
+    }
+
+    .contents_operation_area {
+        position: unset;
+        margin-top: 18px;
+    }
+
+    .stock_delete_btn {
+        margin-top: 10px !important;
+    }
+}
